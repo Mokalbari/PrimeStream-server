@@ -30,7 +30,7 @@ app.get("/tvseries", (req, res) => {
 })
 
 // Route to fetch by name
-app.get("/:name", (req, res) => {
+app.get("/query/:name", (req, res) => {
   const name = req.params.name.toLowerCase()
   const movieList = primeStreamData.filter(movie =>
     movie.title.toLowerCase().includes(name),
