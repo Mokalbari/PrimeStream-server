@@ -10,6 +10,7 @@ const port = 4903
 
 // Configuration to serve ./assets
 app.use(cors())
+app.use(express.json())
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 app.use("/assets", express.static(path.join(__dirname, "assets")))
@@ -36,6 +37,21 @@ app.get("/query/:name", (req, res) => {
     movie.title.toLowerCase().includes(name),
   )
   res.json(movieList)
+})
+
+// Route to update the bookmarked movies
+// Route to update the bookmarked items
+app.put("/primeStream/:title/bookmark", (req, res) => {
+  const { title } = req.params
+  const { isBookmarked } = req.body
+
+  const item = primeStreamData.find(item => item.title === title)
+  if (item) {
+    item.isBookmarked = isBookmarked
+    res.status(200).json({ message: "Bookmarked updated:", item })
+  } else {
+    res.status(404).json({ message: "Item not found:", item })
+  }
 })
 
 app.listen(port, () =>
