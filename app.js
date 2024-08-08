@@ -57,3 +57,5 @@ app.put("/primeStream/:title/bookmark", (req, res) => {
 app.listen(port, () =>
   console.log(`The app is running on http://localhost:${port}`),
 )
+
+export default app
