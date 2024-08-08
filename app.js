@@ -38,7 +38,6 @@ app.get("/query/:name", (req, res) => {
 })
 
 // Route to update the bookmarked movies
-// Route to update the bookmarked items
 app.put("/primeStream/:title/bookmark", (req, res) => {
   const { title } = req.params
   const { isBookmarked } = req.body
@@ -51,9 +50,5 @@ app.put("/primeStream/:title/bookmark", (req, res) => {
     res.status(404).json({ message: "Item not found:", item })
   }
 })
-
-app.listen(port, () =>
-  console.log(`The app is running on http://localhost:${port}`),
-)
 
 export default app
