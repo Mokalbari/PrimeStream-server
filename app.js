@@ -2,7 +2,6 @@ import express from "express"
 import primeStreamData from "./primeStreamData.js"
 import cors from "cors"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
 
 // App configuration
 const app = express()
@@ -11,9 +10,8 @@ const port = 4903
 // Configuration to serve ./assets
 app.use(cors())
 app.use(express.json())
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-app.use("/assets", express.static(path.join(__dirname, "assets")))
+
+app.use("/images", express.static(path.join(__dirname, "../public/images")))
 
 // Main route to get all the data
 app.get("/", (req, res) => res.json(primeStreamData))
